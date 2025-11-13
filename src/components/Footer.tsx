@@ -68,7 +68,7 @@ export default function Footer() {
             <li className="hover:underline underline-offset-4">Careers</li>
           </ul>
         </div>
-        <div>
+        <div className="hidden sm:block">
           <h4 className="text-sm font-semibold uppercase tracking-wide text-neutral-900 dark:text-neutral-200">Support</h4>
           <ul className="mt-4 space-y-3 text-sm text-neutral-600 dark:text-neutral-300">
             <li className="hover:underline underline-offset-4">Customer Helpdesk</li>
