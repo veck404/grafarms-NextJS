@@ -32,7 +32,7 @@ export default function Footer() {
             <span className="text-xs uppercase tracking-[0.4em] text-white/70">Hotline</span>
             <p className="font-display mt-3 flex items-center gap-2 text-lg font-semibold">
               <MdOutlinePhone className="h-5 w-5" />
-              +234 (0) 701 756 7105
+              +234 (0) 805 511 2729
             </p>
             <p className="mt-2 text-sm text-white/70">Available 8am – 8pm WAT, Monday to Saturday</p>
           </div>

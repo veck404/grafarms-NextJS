@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Img from "@/components/Img";
 import { useCartActions } from "@/hooks/useCartActions";
 import type { CartItem } from "@/types/cart";
+import { getProductVolumeLabel } from "@/lib/product-format";
 
 type CartLayoutProps = {
   item: CartItem;
@@ -17,6 +18,9 @@ const formatCurrency = (amount: number) => `₦${Number(amount ?? 0).toLocaleStr
 export default function CartLayout({ item }: CartLayoutProps) {
   const { changeQuantity, removeItem } = useCartActions();
   const [showName, setShowName] = useState(false);
+
+  const sizeLabel =
+    item.size && item.size !== "Any" ? item.size : getProductVolumeLabel(item.name);
 
   const handleQuantityChange = (delta: number) => {
     changeQuantity(item, delta);
@@ -54,27 +58,26 @@ export default function CartLayout({ item }: CartLayoutProps) {
                 </motion.div>
               )}
             </AnimatePresence>
-            <p className="text-sm sm:text-base">Size: {item.size ?? "Any"}</p>
-            <p className="text-sm sm:text-base">Color: {item.color ?? "Any"}</p>
+            <p className="text-sm sm:text-base">Size: {sizeLabel}</p>
           </div>
           <div className="font-display text-xl font-bold sm:text-2xl">{formatCurrency(item.cost)}</div>
         </div>
       </div>
       <div className="cart2:flex-grow-0 relative flex flex-grow flex-col items-end justify-end">
         <FaRegTrashAlt onClick={handleDelete} size={20} className="absolute -top-10 right-0 cursor-pointer font-extrabold text-red-500 cart2:top-0" />
-        <div className="flex w-full select-none items-center justify-center gap-5 rounded-full border border-neutral-200 bg-gray-100 px-3 py-1 text-neutral-800 shadow-sm transition dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:shadow-none">
+        <div className="flex h-12 w-full max-w-[190px] select-none items-center justify-between rounded-full border border-neutral-200 bg-gray-100 px-2 text-neutral-800 shadow-sm transition dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:shadow-none">
           <button
             type="button"
             onClick={() => handleQuantityChange(-1)}
-            className="flex-grow rounded-full px-3 py-1 text-center text-4xl transition hover:bg-neutral-200 dark:hover:bg-neutral-700"
+            className="flex h-9 w-10 items-center justify-center rounded-full bg-white text-2xl font-semibold leading-none transition hover:bg-neutral-200 dark:bg-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-600"
           >
             -
           </button>
-          <span className="font-bold">{item.Quantity}</span>
+          <span className="flex-1 text-center text-lg font-semibold">{item.Quantity}</span>
           <button
             type="button"
             onClick={() => handleQuantityChange(1)}
-            className="flex-grow rounded-full px-3 py-1 text-center text-4xl transition hover:bg-neutral-200 dark:hover:bg-neutral-700"
+            className="flex h-9 w-10 items-center justify-center rounded-full bg-white text-2xl font-semibold leading-none transition hover:bg-neutral-200 dark:bg-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-600"
           >
             +
           </button>

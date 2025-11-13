@@ -686,6 +686,12 @@ video {
 .h-screen {
   height: 100vh;
 }
+.h-14 {
+  height: 3.5rem;
+}
+.h-9 {
+  height: 2.25rem;
+}
 .min-h-\[20px\] {
   min-height: 20px;
 }
@@ -735,6 +741,9 @@ video {
 .w-full {
   width: 100%;
 }
+.w-52 {
+  width: 13rem;
+}
 .min-w-\[20px\] {
   min-width: 20px;
 }
@@ -765,6 +774,15 @@ video {
 .max-w-xl {
   max-width: 36rem;
 }
+.max-w-\[240px\] {
+  max-width: 240px;
+}
+.max-w-\[200px\] {
+  max-width: 200px;
+}
+.max-w-\[190px\] {
+  max-width: 190px;
+}
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -784,6 +802,9 @@ video {
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.cursor-not-allowed {
+  cursor: not-allowed;
 }
 .select-none {
   -webkit-user-select: none;
@@ -930,6 +951,17 @@ video {
 .border-white\/70 {
   border-color: rgb(255 255 255 / 0.7);
 }
+.border-green-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(22 163 74 / var(--tw-border-opacity, 1));
+}
+.border-green-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(187 247 208 / var(--tw-border-opacity, 1));
+}
+.border-green-600\/30 {
+  border-color: rgb(22 163 74 / 0.3);
+}
 .bg-amber-300\/40 {
   background-color: rgb(252 211 77 / 0.4);
 }
@@ -1002,6 +1034,9 @@ video {
 }
 .bg-white\/90 {
   background-color: rgb(255 255 255 / 0.9);
+}
+.bg-green-50\/70 {
+  background-color: rgb(240 253 244 / 0.7);
 }
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
@@ -1121,6 +1156,10 @@ video {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
 }
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
 .pb-0 {
   padding-bottom: 0px;
 }
@@ -1209,6 +1248,9 @@ video {
 }
 .leading-tight {
   line-height: 1.25;
+}
+.leading-none {
+  line-height: 1;
 }
 .tracking-\[0\.4em\] {
   letter-spacing: 0.4em;
@@ -1299,6 +1341,9 @@ video {
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.opacity-60 {
+  opacity: 0.6;
 }
 .shadow-inner {
   --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
@@ -1520,6 +1565,11 @@ body {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
+.hover\:bg-green-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(240 253 244 / var(--tw-bg-opacity, 1));
+}
+
 .hover\:text-green-700:hover {
   --tw-text-opacity: 1;
   color: rgb(21 128 61 / var(--tw-text-opacity, 1));
@@ -1548,6 +1598,11 @@ body {
 .focus\:border-green-600:focus {
   --tw-border-opacity: 1;
   border-color: rgb(22 163 74 / var(--tw-border-opacity, 1));
+}
+
+.focus\:border-green-700:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(21 128 61 / var(--tw-border-opacity, 1));
 }
 
 .focus\:ring-2:focus {
@@ -1627,6 +1682,19 @@ body {
   border-color: rgb(38 38 38 / 0.7);
 }
 
+.dark\:border-emerald-400:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(52 211 153 / var(--tw-border-opacity, 1));
+}
+
+.dark\:border-emerald-400\/40:is(.dark *) {
+  border-color: rgb(52 211 153 / 0.4);
+}
+
+.dark\:border-emerald-500\/40:is(.dark *) {
+  border-color: rgb(16 185 129 / 0.4);
+}
+
 .dark\:bg-amber-500\/20:is(.dark *) {
   background-color: rgb(245 158 11 / 0.2);
 }
@@ -1699,6 +1767,15 @@ body {
 
 .dark\:bg-red-900\/40:is(.dark *) {
   background-color: rgb(127 29 29 / 0.4);
+}
+
+.dark\:bg-neutral-700:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(64 64 64 / var(--tw-bg-opacity, 1));
+}
+
+.dark\:bg-emerald-500\/10:is(.dark *) {
+  background-color: rgb(16 185 129 / 0.1);
 }
 
 .dark\:from-emerald-950\/40:is(.dark *) {
@@ -1846,6 +1923,15 @@ body {
   background-color: rgb(23 23 23 / var(--tw-bg-opacity, 1));
 }
 
+.dark\:hover\:bg-emerald-500\/10:hover:is(.dark *) {
+  background-color: rgb(16 185 129 / 0.1);
+}
+
+.dark\:hover\:bg-neutral-600:hover:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(82 82 82 / var(--tw-bg-opacity, 1));
+}
+
 .dark\:hover\:text-emerald-300:hover:is(.dark *) {
   --tw-text-opacity: 1;
   color: rgb(110 231 183 / var(--tw-text-opacity, 1));
@@ -1864,6 +1950,11 @@ body {
 .dark\:focus\:border-emerald-400:focus:is(.dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(52 211 153 / var(--tw-border-opacity, 1));
+}
+
+.dark\:focus\:border-emerald-300:focus:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(110 231 183 / var(--tw-border-opacity, 1));
 }
 
 .dark\:focus\:ring-emerald-500\/30:focus:is(.dark *) {

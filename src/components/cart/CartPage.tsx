@@ -8,8 +8,8 @@ import { IoIosArrowForward } from "react-icons/io";
 import CartLayout from "@/components/CartLayout";
 import Img from "@/components/Img";
 import { useCartContext } from "@/context/cart-context";
-
-const WHATSAPP_NUMBER = "2347017567105";
+import { buildWhatsAppCheckoutLink } from "@/lib/contact";
+import { getProductVolumeLabel } from "@/lib/product-format";
 
 const formatCurrency = (amount: number) => `₦${Number(amount ?? 0).toLocaleString("en-NG")}`;
 
@@ -41,7 +41,8 @@ export default function CartPage() {
     setFormError("");
 
     const orderLines = Items.map((item, index) => {
-      const attributes = [item.size && `Size: ${item.size}`, item.color && `Color: ${item.color}`].filter(Boolean).join(" • ");
+      const sizeLabel = item.size && item.size !== "Any" ? item.size : getProductVolumeLabel(item.name, "");
+      const attributes = [sizeLabel && `Size: ${sizeLabel}`].filter(Boolean).join(" • ");
       const descriptor = attributes ? `${item.name} (${attributes})` : item.name;
       const lineTotal = Number(item.cost || 0) * Number(item.Quantity || 0);
       return `${index + 1}. ${descriptor} x${item.Quantity} — ${formatCurrency(lineTotal)}`;
@@ -69,7 +70,7 @@ export default function CartPage() {
       .filter((line) => line && line.trim().length > 0)
       .join("\n");
 
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = buildWhatsAppCheckoutLink(message);
 
     const newWindow = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     if (!newWindow) {
@@ -115,7 +116,7 @@ export default function CartPage() {
         <motion.div key={Items.length} className="flex h-fit flex-grow flex-col rounded-xl border-2 p-5">
           <AnimatePresence>
             {Items.map((item, index) => (
-              <AnimatePresence key={`${item.id}-${item.color ?? "any"}-${item.size ?? "any"}`} mode="wait">
+              <AnimatePresence key={`${item.id}-${item.size ?? "any"}`} mode="wait">
                 <motion.div
                   initial={{ height: "auto", opacity: 0, y: 0 }}
                   animate={{ height: "auto", opacity: 1, y: 10 }}
@@ -146,24 +147,24 @@ export default function CartPage() {
               <div className="font-display text-lg font-bold">{formatCurrency(total)}</div>
             </div>
             <div className="grid gap-4">
-              <label className="flex flex-col gap-2 text-sm font-medium text-neutral-700 dark:text-neutral-300">
-                <span>Full Name</span>
+              <label className="flex flex-col gap-3 rounded-3xl border-2 border-green-600/30 bg-green-50/70 p-4 text-sm font-medium text-neutral-700 shadow-sm transition dark:border-emerald-400/40 dark:bg-emerald-500/10 dark:text-neutral-200">
+                <span className="text-xs font-semibold uppercase tracking-wide text-green-800 dark:text-emerald-300">Full Name</span>
                 <input
                   type="text"
                   value={customerName}
                   onChange={(event) => setCustomerName(event.target.value)}
                   placeholder="Enter your full name"
-                  className="w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-neutral-800 outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-200 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:focus:border-emerald-400 dark:focus:ring-emerald-500/30"
+                  className="w-full rounded-2xl border border-green-200 bg-white px-4 py-3 text-neutral-800 outline-none transition focus:border-green-700 focus:ring-2 focus:ring-green-200 dark:border-emerald-500/40 dark:bg-neutral-900 dark:text-neutral-100 dark:focus:border-emerald-300 dark:focus:ring-emerald-500/30"
                 />
               </label>
-              <label className="flex flex-col gap-2 text-sm font-medium text-neutral-700 dark:text-neutral-300">
-                <span>Delivery Address</span>
+              <label className="flex flex-col gap-3 rounded-3xl border-2 border-green-600/30 bg-green-50/70 p-4 text-sm font-medium text-neutral-700 shadow-sm transition dark:border-emerald-400/40 dark:bg-emerald-500/10 dark:text-neutral-200">
+                <span className="text-xs font-semibold uppercase tracking-wide text-green-800 dark:text-emerald-300">Delivery Address</span>
                 <textarea
                   value={deliveryAddress}
                   onChange={(event) => setDeliveryAddress(event.target.value)}
                   placeholder="Include street, city, and any delivery notes"
                   rows={3}
-                  className="w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-neutral-800 outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-200 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:focus:border-emerald-400 dark:focus:ring-emerald-500/30"
+                  className="w-full rounded-2xl border border-green-200 bg-white px-4 py-3 text-neutral-800 outline-none transition focus:border-green-700 focus:ring-2 focus:ring-green-200 dark:border-emerald-500/40 dark:bg-neutral-900 dark:text-neutral-100 dark:focus:border-emerald-300 dark:focus:ring-emerald-500/30"
                 />
               </label>
               {formError && <p className="text-sm font-medium text-red-600 dark:text-red-400">{formError}</p>}
@@ -172,7 +173,7 @@ export default function CartPage() {
               <button
                 type="button"
                 onClick={handleCheckout}
-                className="flex-grow rounded-3xl bg-black px-16 py-3 text-center text-white transition hover:-translate-y-[1px]"
+                className="flex-grow rounded-3xl bg-green-800 px-16 py-3 text-center text-white transition hover:-translate-y-[1px]"
               >
                 Checkout on WhatsApp
               </button>

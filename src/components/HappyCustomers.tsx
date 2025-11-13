@@ -34,7 +34,7 @@ export default function HappyCustomers() {
               transition={{ duration: 0.6, repeat: Infinity, repeatType: "reverse", repeatDelay: 2 }}
               className="flex h-2 w-2 rounded-full bg-green-600 dark:bg-emerald-400"
             />
-            <span>Drag to explore stories</span>
+            <span>Swip left or right to explore stories</span>
             <motion.span
               initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
