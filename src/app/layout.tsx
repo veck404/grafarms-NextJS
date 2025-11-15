@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import SideNav from "@/components/SideNav";
 
 export const metadata: Metadata = {
-  title: "Grafarms NextJS",
+  title: "Grafarms",
   description: "Premium palm oil storefront for Graferd Farms.",
 };
 
